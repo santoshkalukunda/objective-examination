@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} | {{ $title }}</title>
+    <title>{{ config('app.name', 'Laravel') }} | {{ $title ?? '' }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -83,9 +83,13 @@
         </nav>
 
         <main class="py-4">
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
+            @if (Session::has('success'))
+                <div class="container">
+
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <span>{{ Session::get('success') }}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 </div>
             @endif
             @yield('content')

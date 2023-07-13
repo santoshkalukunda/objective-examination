@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['role:super-admin']], function () {
     Route::resource('subjects', SubjectController::class);
+    Route::get('questions/{subject}', [QuestionController::class, 'index'])->name('questions.index');
+    Route::post('questions/{subject}', [QuestionController::class, 'store'])->name('questions.store');
+    Route::get('questions/{subject}/{question}/edit', [QuestionController::class, 'edit'])->name('questions.edit');
+    Route::put('questions/{subject}/{question}', [QuestionController::class, 'update'])->name('questions.update');
+    Route::delete('questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 });

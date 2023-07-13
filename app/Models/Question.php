@@ -4,27 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 use Wildside\Userstamps\Userstamps;
 
-class Subject extends Model
+class Question extends Model
 {
-    use HasFactory, Userstamps, HasSlug;
+    use HasFactory, Userstamps;
     protected $guarded = ['id'];
-
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug')
-            ->doNotGenerateSlugsOnUpdate();
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 
     public function getStatusAttribute()
     {
@@ -44,8 +29,8 @@ class Subject extends Model
         return $query->where('status', false);
     }
 
-    public function questions()
+    public function subject()
     {
-        return $this->hasMany(Question::class);
+        return $this->belongsTo(Subject::class);
     }
 }

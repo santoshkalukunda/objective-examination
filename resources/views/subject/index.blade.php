@@ -67,6 +67,9 @@
                                                 <div><a class="text-center btn btn-primary"
                                                         href="{{ route('subjects.edit', $subject) }}">Edit</a>
                                                 </div>
+                                                <div><a class="text-center btn btn-primary"
+                                                        href="{{ route('questions.index', $subject) }}">Questions</a>
+                                                </div>
                                                 <div>
                                                     <form action="{{ route('subjects.destroy', $subject) }}"
                                                         method="post">
