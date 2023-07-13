@@ -1,17 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{$title = 'Dashboard' }} </div>
+    @php
+        $title = 'Dashboard';
+    @endphp
+    <div class="container">
+        <div class="row justify-content-center">
+            @foreach ($subjects as $subject)
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-outline-secondary p-4">
 
-                <div class="card-body">
-                    {{ __('You are logged in!') }}
+                        {{ $subject->name }}
+
+                    </button>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
-</div>
 @endsection
