@@ -34,14 +34,12 @@ Route::group(['middleware' => ['role:super-admin']], function () {
     Route::put('questions/{subject}/{question}', [QuestionController::class, 'update'])->name('questions.update');
     Route::delete('questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 
-    //examination
-    Route::get('examinations', [ExaminationController::class, 'index'])->name('examinations.index');
-    
-    
-    
+  
+    //ganerate email
     Route::get('examinations/generate-email', [ExaminationController::class, 'generateEmail'])->name('examinations.generateEmail');
     
 });
 
+//student access url
 Route::post('examinations/{user}/{token}', [ExaminationController::class, 'store'])->name('examinations.store');
 Route::get('examinations/{user}/{token}', [ExaminationController::class, 'generateUrl'])->name('examinations.generateUrl');

@@ -20,17 +20,6 @@ class ExaminationController extends Controller
      */
     public function index()
     {
-        $physicsQuestions = Question::where('subject_id', '1')
-            ->Active()
-            ->inRandomOrder()
-            ->take(5)
-            ->get();
-        $chemistryQuestions = Question::where('subject_id', '2')
-            ->Active()
-            ->inRandomOrder()
-            ->take(5)
-            ->get();
-        return view('examination.index', compact('physicsQuestions', 'chemistryQuestions'));
     }
 
     /**
@@ -44,13 +33,13 @@ class ExaminationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreExaminationRequest $request,User $user, $token)
+    public function store(StoreExaminationRequest $request, User $user, $token)
     {
         $questions = $request->question;
         $answers = $request->answers;
 
         foreach ($questions as $question) {
-          $user->examinations()->create([
+            $user->examinations()->create([
                 'question_id' => $question,
                 'ans' => $answers[$question] ?? null,
                 'token' => $token,
@@ -110,10 +99,14 @@ class ExaminationController extends Controller
     public function generateUrl(User $user, $token)
     {
         try {
-           ;
-            if ( $user->examinations()->where('token', $token)->count()) {
-                return "You have already submited";
-            }else{
+            if (
+                $user
+                    ->examinations()
+                    ->where('token', $token)
+                    ->count()
+            ) {
+                return 'You have already submited';
+            } else {
                 //code...
                 $studentQuestionToken = $user
                     ->studentQuestionToken()
@@ -135,7 +128,6 @@ class ExaminationController extends Controller
                     return abort(404);
                 }
             }
-            
         } catch (\Throwable $th) {
             return abort(404);
         }
