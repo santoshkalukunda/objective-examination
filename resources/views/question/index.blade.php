@@ -164,12 +164,6 @@
                                         <ul class="navbar-nav ms-auto">
                                             <!-- Authentication Links -->
                                             <li class="nav-item dropdown">
-                                                <div id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
-                                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false" v-pre>
-                                                    . . .
-                                                </div>
-
                                                 <div class="">
                                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                                             class="bi bi-three-dots"></i></a>
@@ -197,33 +191,21 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="{{ $question->id }}"
-                                            id="a-{{ $question->id }}" {{ $question->ans == 'A' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="a-{{ $question->id }}">
-                                            {{ $question->a }}
-                                        </label>
+                                    <div>
+                                        {!! $question->ans == 'A' ? '<b><i class="bi bi-bookmark-check-fill"></i> A.' .$question->a .'</b>' : '<i class="bi bi-bookmark"></i> A.'.$question->a !!}
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="{{ $question->id }}"
-                                            id="b-{{ $question->id }}" {{ $question->ans == 'B' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="b-{{ $question->id }}">
-                                            {{ $question->b }}
-                                        </label>
+                                    <div>
+                                        {!! $question->ans == 'B' ? '<b><i class="bi bi-bookmark-check-fill"></i> B. ' .$question->a .'</b>' : '<i class="bi bi-bookmark"></i> B.'.$question->a !!}
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="{{ $question->id }}"
-                                            id="c-{{ $question->id }}" {{ $question->ans == 'C' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="c-{{ $question->id }}">
-                                            {{ $question->c }}
-                                        </label>
+                                    <div>
+                                        {!! $question->ans == 'C' ? '<b><i class="bi bi-bookmark-check-fill"></i> C. ' .$question->a .'</b>' : '<i class="bi bi-bookmark"></i> C. '.$question->a !!}
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="{{ $question->id }}"
-                                            id="d-{{ $question->id }}" {{ $question->ans == 'D' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="d-{{ $question->id }}">
-                                            {{ $question->d }}
-                                        </label>
+                                    <div>
+                                        {!! $question->ans == 'D' ? '<b><i class="bi bi-bookmark-check-fill"></i> D. ' .$question->a .'</b>' : '<i class="bi bi-bookmark"></i> D. '.$question->a !!}
+                                    </div>
+
+                                    <div class="text-secondary">
+                                        <i class="bi bi-calendar-week"></i> Expiry Date: {{ $question->expire_date }}
                                     </div>
                                 </div>
                             </div>

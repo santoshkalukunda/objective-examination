@@ -17,7 +17,10 @@ class QuestionController extends Controller
         if (!$question) {
             $question = new Question();
         }
-        $questions = Question::latest()->get();
+        $questions = $subject
+            ->questions()
+            ->latest()
+            ->get();
         return view('question.index', compact('question', 'questions', 'subject'));
     }
 
@@ -36,7 +39,7 @@ class QuestionController extends Controller
     {
         $subject->questions()->create($request->validated());
         return redirect()
-            ->back()
+            ->route('questions.index', $subject)
             ->with('success', 'Questions Created');
     }
 
@@ -62,7 +65,9 @@ class QuestionController extends Controller
     public function update(UpdateQuestionRequest $request, Subject $subject, Question $question)
     {
         $question->update($request->validated());
-        return $this->index($subject)->with('success','Question Updated');
+        return redirect()
+            ->route('questions.index', $subject)
+            ->with('success', 'Question Updated');
     }
 
     /**
@@ -71,6 +76,8 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         $question->delete();
-        return redirect()->back()->with('Question Deleted');
+        return redirect()
+            ->back()
+            ->with('Question Deleted');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Wildside\Userstamps\Userstamps;
@@ -19,14 +20,10 @@ class Question extends Model
             return 'Deactivate';
         }
     }
-    public function scopeActived($query)
+    public function scopeActive($query)
     {
-        return $query->where('status', true);
-    }
-
-    public function scopeDeactives($query)
-    {
-        return $query->where('status', false);
+        
+        return $query->whereDate('expire_date', Carbon::today());
     }
 
     public function subject()
