@@ -23,11 +23,16 @@ class Question extends Model
     public function scopeActive($query)
     {
         
-        return $query->whereDate('expire_date', Carbon::today());
+        return $query->where('expire_date', '>=', Carbon::today());
     }
 
     public function subject()
     {
         return $this->belongsTo(Subject::class);
+    }
+
+    public function examinations()
+    {
+        return $this->hasMany(Examination::class);
     }
 }

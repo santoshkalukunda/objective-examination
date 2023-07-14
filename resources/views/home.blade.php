@@ -6,15 +6,7 @@
     @endphp
     <div class="container">
         <div class="row justify-content-center">
-            @foreach ($subjects as $subject)
-                <div class="col-md-2">
-                    <button type="button" class="btn btn-outline-secondary p-4">
-
-                        {{ $subject->name }}
-
-                    </button>
-                </div>
-            @endforeach
+            <a href="{{route('examinations.generateEmail')}}" class="btn btn-outline-primary p-5">Generate Questionnaire</a>
         </div>
     </div>
 @endsection

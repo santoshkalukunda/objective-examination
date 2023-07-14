@@ -159,7 +159,7 @@
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between">
                                         <div>
-                                            {{ $question->title }}
+                                            Q {{ $loop->iteration }}. {{ $question->title }}
                                         </div>
                                         <ul class="navbar-nav ms-auto">
                                             <!-- Authentication Links -->
@@ -195,13 +195,13 @@
                                         {!! $question->ans == 'A' ? '<b><i class="bi bi-bookmark-check-fill"></i> A.' .$question->a .'</b>' : '<i class="bi bi-bookmark"></i> A.'.$question->a !!}
                                     </div>
                                     <div>
-                                        {!! $question->ans == 'B' ? '<b><i class="bi bi-bookmark-check-fill"></i> B. ' .$question->a .'</b>' : '<i class="bi bi-bookmark"></i> B.'.$question->a !!}
+                                        {!! $question->ans == 'B' ? '<b><i class="bi bi-bookmark-check-fill"></i> B. ' .$question->b .'</b>' : '<i class="bi bi-bookmark"></i> B.'.$question->b !!}
                                     </div>
                                     <div>
-                                        {!! $question->ans == 'C' ? '<b><i class="bi bi-bookmark-check-fill"></i> C. ' .$question->a .'</b>' : '<i class="bi bi-bookmark"></i> C. '.$question->a !!}
+                                        {!! $question->ans == 'C' ? '<b><i class="bi bi-bookmark-check-fill"></i> C. ' .$question->c .'</b>' : '<i class="bi bi-bookmark"></i> C. '.$question->c !!}
                                     </div>
                                     <div>
-                                        {!! $question->ans == 'D' ? '<b><i class="bi bi-bookmark-check-fill"></i> D. ' .$question->a .'</b>' : '<i class="bi bi-bookmark"></i> D. '.$question->a !!}
+                                        {!! $question->ans == 'D' ? '<b><i class="bi bi-bookmark-check-fill"></i> D. ' .$question->d .'</b>' : '<i class="bi bi-bookmark"></i> D. '.$question->d !!}
                                     </div>
 
                                     <div class="text-secondary">
